@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
                                 onChanged: (bool value) {
                                   setState(() {
                                     round = value;
-                                    if (round) {
+                                    if (round && amount==0) {
                                       amount =
                                           amount - amount.floorToDouble() > .5
                                               ? amount.ceilToDouble()
