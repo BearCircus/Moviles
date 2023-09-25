@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:meals/screens/meals_list.dart';
 import '../data/data.dart';
@@ -12,15 +11,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // Variables
   List<dynamic> meals = [];
-
-// init
 
   @override
   void initState() {
-    meals = jsonDecode(MEALS);
     super.initState();
+    meals = jsonDecode(MEALS);
   }
 
   @override
@@ -32,11 +28,12 @@ class _MyAppState extends State<MyApp> {
               seedColor: Colors.black, brightness: Brightness.dark)),
       home: Scaffold(
           appBar: AppBar(
-            title: const Text('Quick and Easy'),
+            title: const Text(
+              'Quick and Easy',
+            ),
+            centerTitle: true,
           ),
-          body: MealsList(
-            mealsList: meals,
-          )),
+          body: MealsList(mealsList: meals)),
     );
   }
 }
