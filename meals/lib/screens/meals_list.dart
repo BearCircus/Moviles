@@ -10,6 +10,7 @@ class MealsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: mealsList.length,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return SizedBox(
             height: 250,

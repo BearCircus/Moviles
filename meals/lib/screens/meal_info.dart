@@ -46,6 +46,7 @@ class _MealInfoState extends State<MealInfo> {
         ],
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             Image(
