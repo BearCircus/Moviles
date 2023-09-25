@@ -49,11 +49,14 @@ class _MealInfoState extends State<MealInfo> {
         physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            Image(
-              image: AssetImage(widget.meal['image']),
-              fit: BoxFit.cover,
-              width: 400,
-              height: 250,
+            Hero(
+              tag: 'meal-hero-${widget.meal['title']}',
+              child: Image(
+                image: AssetImage(widget.meal['image']),
+                fit: BoxFit.cover,
+                width: 400,
+                height: 250,
+              ),
             ),
             const SetTitle(mealTitle: 'Ingredients'),
             const SizedBox(height: 5),

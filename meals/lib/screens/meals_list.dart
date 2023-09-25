@@ -16,24 +16,30 @@ class MealsList extends StatelessWidget {
             height: 250,
             child: InkWell(
               onTap: () {
+                const duration = Duration(milliseconds: 500);
                 Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                        pageBuilder: (context, animation, secondaryAnimation) =>
-                            MealInfo(meal: mealsList[index]),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
-                          const begin = Offset(1.0, 0);
-                          const end = Offset.zero;
-                          const curve = Curves.easeInOut;
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        MealInfo(meal: mealsList[index]),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      const begin = Offset(1.0, 0);
+                      const end = Offset.zero;
+                      const curve = Curves.easeInOut;
+                      // Define your duration
 
-                          var tween = Tween(begin: begin, end: end)
-                              .chain(CurveTween(curve: curve));
-                          var offsetAnimation = animation.drive(tween);
+                      var tween = Tween(begin: begin, end: end)
+                          .chain(CurveTween(curve: curve));
+                      var offsetAnimation = animation.drive(tween);
 
-                          return SlideTransition(
-                              position: offsetAnimation, child: child);
-                        }));
+                      return SlideTransition(
+                          position: offsetAnimation, child: child);
+                    },
+                    transitionDuration: duration,
+                    reverseTransitionDuration: duration,
+                  ),
+                );
               },
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -43,9 +49,12 @@ class MealsList extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    Image.asset(
-                      mealsList[index]['image'],
-                      fit: BoxFit.cover,
+                    Hero(
+                      tag: 'meal-hero-${mealsList[index]['title']}',
+                      child: Image.asset(
+                        mealsList[index]['image'],
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
